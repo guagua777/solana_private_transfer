@@ -58,3 +58,26 @@
 5. 执行sunspot deploy target/withdrawal.vk，会生成target/withdrawal.so文件和target/withdrawal-keypair.json文件
 6. 使用solana program deploy target/withdrawal.so
 
+
+
+## How it Works
+
+1. **Deposit**: User deposits SOL into a shared pool. A commitment `hash(nullifier, secret, amount)` is added to a Merkle tree.
+
+2. **Withdraw**: User generates a ZK proof showing they know a valid commitment without revealing which one. The proof is verified onchain via Sunspot.
+
+3. **Privacy**: The link between deposit and withdrawal is broken. Only the amount is visible (variable amounts trade privacy for flexibility).
+
+## Project Structure
+
+```
+├── circuits/
+│   ├── hasher/          # Computes commitment and nullifier hash
+│   ├── merkle-hasher/   # Computes Merkle root for a leaf
+│   └── withdrawal/      # Main ZK proof circuit
+├── anchor/
+│   └── programs/
+│       └── private_transfers/  # Solana program
+├── backend/             # API for proof generation
+└── frontend/            # React UI
+```
