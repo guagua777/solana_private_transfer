@@ -9,6 +9,8 @@ $ sunspot setup target/withdrawal.ccs
 # 修改为自己的安装路径
 $ export GNARK_VERIFIER_BIN="/home/ubuntu/src/sunspot/gnark-solana/crates/verifier-bin"
 $ sunspot deploy target/withdrawal.vk
+$ solana-test-validator 启动测试网络
+# solana config get 查看当前网络配置
 $ solana program deploy target/withdrawal.so
 # 获取自己的部署的程序id
 # PROGRAM_ID = Cpjk1AcwHQ4wS9z3pBmKHCBaCJw1of8dhqT5Qyeu57iU
